@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomConsole", "EcomConsole\EcomConsole.csproj", "{6095739C-0010-4C71-9095-328D29553BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomDAL", "EcomDAL\EcomDAL.csproj", "{F3E8025B-B01C-4EC8-A730-499362A4B2A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomAPI", "EcomAPI\EcomAPI.csproj", "{343CF197-9306-4093-82F2-EB0D2FA5D1D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6095739C-0010-4C71-9095-328D29553BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6095739C-0010-4C71-9095-328D29553BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6095739C-0010-4C71-9095-328D29553BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6095739C-0010-4C71-9095-328D29553BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E8025B-B01C-4EC8-A730-499362A4B2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E8025B-B01C-4EC8-A730-499362A4B2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E8025B-B01C-4EC8-A730-499362A4B2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E8025B-B01C-4EC8-A730-499362A4B2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{343CF197-9306-4093-82F2-EB0D2FA5D1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{343CF197-9306-4093-82F2-EB0D2FA5D1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{343CF197-9306-4093-82F2-EB0D2FA5D1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{343CF197-9306-4093-82F2-EB0D2FA5D1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,32 @@
+Setting up MSSQL Docker Container:
+================================
+
+1. Start the container:
+   >> docker compose up -d
+
+2. Verify it's running:
+   >> docker ps
+
+3. Connection Details:
+   - Host: localhost (or 127.0.0.1)
+   - Port: 1433
+   - User: sa
+   - Password: StrongPass@6473
+   - Database: EComDB (will be created by script, initially connect to 'master')
+
+4. Executing the SQL Script:
+   Option A: Using Docker Exec (Recommended for quick setup)
+   >> docker cp ./ECommerceDB/Compiled_Script/Single_Compiled.sql sql_server_fts:/tmp/script.sql
+   >> docker exec -it sql_server_fts /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "StrongPass@6473" -i /tmp/script.sql
+
+   Option B: Using a GUI Client (SSMS, Azure Data Studio, DBeaver)
+   - Connect using the credentials above.
+   - Open 'ECommerceDB/Compiled_Script/Single_Compiled.sql'.
+   - Execute the entire script.
+
+5. Managing the Container:
+   - Stop: >> docker compose stop
+   - Remove (and delete data): >> docker compose down -v
+   - List volumes: >> docker volume ls
+   - Prevent container from starting at startup automatically >> docker update --restart=no [container name] 
+   | Example: >> docker update --restart=no sql_server_fts

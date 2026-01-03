@@ -1,0 +1,9 @@
+npm install tailwindcss @tailwindcss/postcss postcss --force
+
+echo '{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}' > ./.postcssrc.json
+
+echo '@import "tailwindcss";' > ./src/styles.css

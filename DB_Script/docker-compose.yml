@@ -1,0 +1,15 @@
+services:
+  mssql:
+    build: .
+    container_name: sql_server_fts
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=StrongPass@6473
+    ports:
+      - "1433:1433"
+    restart: always
+    volumes:
+      - sqlvolume:/var/opt/mssql
+
+volumes:
+  sqlvolume:

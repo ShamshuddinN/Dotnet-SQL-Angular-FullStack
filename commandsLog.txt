@@ -1,0 +1,30 @@
+dotnet new console -n EcomConsole --use-program-main
+
+dotnet new sln -n EcommerceDotnet
+
+dotnet sln add EcomConsole/EcomConsole.csproj
+
+dotnet new classlib -n EcomDAL
+
+dotnet sln add EcomDAL/EcomDAL.csproj
+
+dotnet new webapi -n EcomAPI --use-program-main
+
+dotnet sln add EcomAPI/EcomAPI.csproj
+
+rm ./EcomDAL/Class1.cs
+
+dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 8.0.0
+
+dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.Tools --version 8.0.0
+
+dotnet ef dbcontext scaffold "Server=localhost,1433;Database=ECommerceDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project ./EcomDAL/EcomDAL.csproj  -o Models
+
+dotnet add ./EcomConsole/EcomConsole.csproj reference ./EcomDAL/EcomDAL.csproj
+
+dotnet add ./EcomAPI/EcomAPI.csproj reference ./EcomDAL/EcomDAL.csproj
+
+touch ./EcomDAL/appsettings.json
+
+ng new EcomUI --style css
+
