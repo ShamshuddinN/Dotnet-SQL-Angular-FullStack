@@ -52,3 +52,12 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+EcomUI/.vscode/extensions.json
+EcomUI/.vscode/launch.json
+EcomUI/.vscode/tasks.json
+EcomUI/.vscode/extensions.json
+EcomUI/.vscode/launch.json
+EcomUI/.vscode/tasks.json
+EcomUI/.vscode/extensions.json
+EcomUI/.vscode/launch.json
+EcomUI/.vscode/tasks.json

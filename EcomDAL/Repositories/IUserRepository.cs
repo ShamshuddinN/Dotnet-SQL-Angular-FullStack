@@ -27,4 +27,5 @@ public interface IUserRepository
     User? GetUserByEmail(string email);
 
     User? ValidateUser(string email, string passwordHash);
+    User? GetUserById(int userId);
 }

@@ -20,8 +20,8 @@ public class UserRegisterDto
     [Required]
     public DateOnly DateOfBirth { get; set; }
 
-    [Required]
-    public int RoleId { get; set; } // 2: Admin, 3: Customer, etc.
+
+    public int RoleId { get; set; } = 2; // Default signup role will be Customer. No need to have Role choice in frontend.
 
     public string? PhoneNumber { get; set; }
 

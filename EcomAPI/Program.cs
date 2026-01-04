@@ -35,7 +35,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200") // Angular default port
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 

@@ -67,4 +67,9 @@ public class UserRepository : IUserRepository
     {
         return _context.Users.FirstOrDefault(u => u.Email == email);
     }
+
+    public User? GetUserById(int userId)
+    {
+        return _context.Users.FirstOrDefault(u => u.UserId == userId);
+    }
 }

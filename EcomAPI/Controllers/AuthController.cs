@@ -63,9 +63,17 @@ public class AuthController : ControllerBase
 
         var result = _userRepository.RegisterUser(user, passwordHash, address);
 
-        if (result > 0) // Assuming > 0 means UserId or Success
+        if (result > 0) // Successful registration returns new UserID
         {
-            return Ok(new { Message = "User registered successfully", UserId = result });
+            user = _userRepository.GetUserById(result);
+
+            if (user != null)
+            {
+                var token = GenerateJwtToken(user);
+                SetTokenCookie(token);
+                return Ok(new { Message = "User registered successfully", UserId = result });
+            }
+            
         }
         else if (result == -1)
         {
@@ -95,8 +103,28 @@ public class AuthController : ControllerBase
         }
 
         var token = GenerateJwtToken(user);
+        SetTokenCookie(token);
 
-        return Ok(new { Token = token, Message = "Login successful" });
+        return Ok(new { Message = "Login successful" });
+    }
+
+    [HttpPost("logout")]
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete("jwt");
+        return Ok(new { Message = "Logged out successfully" });
+    }
+
+    private void SetTokenCookie(string token)
+    {
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true, // Set to true in Production, but good for local if using https or localhost constraints often allow it
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTime.UtcNow.AddHours(2)
+        };
+        Response.Cookies.Append("jwt", token, cookieOptions);
     }
 
     private string GenerateJwtToken(User user)
@@ -124,6 +152,32 @@ public class AuthController : ControllerBase
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+
+    [HttpGet("me")]
+    [Authorize]
+    [SwaggerOperation(Summary = "Get current user", Description = "Retrieves details of the currently logged-in user.")]
+    [SwaggerResponse(200, "User details returned")]
+    [SwaggerResponse(401, "Not authenticated")]
+    public IActionResult GetMe()
+    {
+        var params_identity = HttpContext.User.Identity as ClaimsIdentity;
+        //var claims = new List<Claim>();
+        var map_claims = new Dictionary<string, string>();
+        if(params_identity != null){
+            IEnumerable<Claim> claims = params_identity.Claims;
+             foreach(var claim in claims){
+                map_claims[claim.Type] = claim.Value;
+             }
+        }
+        
+        return Ok(new 
+        { 
+            UserId = map_claims[ClaimTypes.NameIdentifier],
+            FullName = map_claims[ClaimTypes.Name],
+            Email = map_claims[ClaimTypes.Email],
+            Role = map_claims[ClaimTypes.Role]
+        });
     }
 
     private string GetRoleName(int roleId)
