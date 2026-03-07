@@ -1,0 +1,1 @@
+Added both stored procedures in database: [usp_UpdateProduct] and [usp_DeleteProduct]. Yet to be included in single compiled script.

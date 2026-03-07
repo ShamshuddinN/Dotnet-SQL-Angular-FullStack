@@ -177,7 +177,6 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       this.isLoading.set(true);
       this.errorMessage.set(null);
-      console.log('Sending Signup payload:', this.signupForm.value);
       this.authService.register(this.signupForm.value).subscribe({
         next: () => {
           console.log('Signup Successful');

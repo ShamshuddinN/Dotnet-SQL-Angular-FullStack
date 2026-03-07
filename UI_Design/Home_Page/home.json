@@ -1,0 +1,119 @@
+{
+    "Title": "Ecom",
+    "page_body": {
+        "Dynamic_Navigation_Bar": {
+            "Text": "Company Name",
+            "Search_Bar": {
+                "Placeholder": "Search for products, brands and more"
+            },
+            "categories": [
+                "Electronics",
+                "Fashion",
+                "Home & Living",
+                "Beauty",
+                "Sports"
+            ],
+            "Cart_Icon": {
+                "Tooltip": "View your cart"
+            },
+            "Dynamic_Buttons": {
+                "Login": "Log In",
+                "Sign_Up": "Sign Up"
+            }
+        },
+        "Occatonal_Banner_Section": {
+            "Behaviour": "Slider with changing banners based on seasons or sales",
+            "Image_URL": "path/to/occasional_banner_image.jpg",
+            "Alt_Text": "Seasonal Sale Banner",
+            "Link": "path/to/sale_page"
+        },
+        "Page Body Continuation": {
+            "Featured_Products_Section": {
+                "Title": "Featured Products",
+                "Description": "Handpicked products just for you",
+                "Behaviour": "Slider having multiple featured product cards",
+                "Optional_Badge": "Best Seller",
+                "Products_Example": [
+                    {
+                        "Name": "Wireless Headphones",
+                        "Compare Price": "$129.99",
+                        "Offer Price": "$99.99",
+                        "Short_Description": "Experience high-quality sound without the wires.",
+                        "Image_URL": "path/to/headphones_image.jpg"
+                    },
+                    {
+                        "Name": "Smartwatch",
+                        "Compare Price": "$199.99",
+                        "Offer Price": "$149.99",
+                        "Short_Description": "Stay connected and track your fitness on the go.",
+                        "Image_URL": "path/to/smartwatch_image.jpg"
+                    },
+                    {
+                        "Name": "4K LED TV",
+                        "Compare Price": "$799.99",
+                        "Offer Price": "$699.99",
+                        "Short_Description": "Enjoy stunning visuals with this 4K Ultra HD television.",
+                        "Image_URL": "path/to/tv_image.jpg"
+                    }
+                ]
+            },
+            "Products from XYZ Category": {
+                "Title": "Electronics",
+                "Description": "Latest gadgets and devices",
+                "Behaviour": "Slider having various electronic products",
+                "Optional_Badge":"New Arrival",
+                "Products_Example": [
+                    {
+                        "Name": "Bluetooth Speaker",
+                        "Compare Price": "$59.99",
+                        "Offer Price": "$39.99",
+                        "Short_Description": "Portable speaker with excellent sound quality.",
+                        "Image_URL": "path/to/speaker_image.jpg"
+                    },
+                    {
+                        "Name": "Gaming Laptop",
+                        "Compare Price": "$1199.99",
+                        "Offer Price": "$999.99",
+                        "Short_Description": "High-performance laptop for gaming and work.",
+                        "Image_URL": "path/to/laptop_image.jpg"
+                    },
+                    {
+                        "Name": "Action Camera",
+                        "Compare Price": "$249.99",
+                        "Offer Price": "$199.99",
+                        "Short_Description": "Capture your adventures in stunning 4K resolution.",
+                        "Image_URL": "path/to/camera_image.jpg"
+                    }
+                ]
+            }
+        },
+        "Footer_Section": {
+            "Links": [
+                "About Us",
+                "Contact Us",
+                "Privacy Policy",
+                "Terms of Service",
+                "Help Center"
+            ],
+            "Social_Media_Icons": [
+                {
+                    "Platform": "Facebook",
+                    "Link": "path/to/facebook_page"
+                },
+                {
+                    "Platform": "Twitter",
+                    "Link": "path/to/twitter_page"
+                },
+                {
+                    "Platform": "Instagram",
+                    "Link": "path/to/instagram_page"
+                }
+            ],
+            "Newsletter_Signup": {
+                "Placeholder": "Enter your email to subscribe",
+                "Button_Text": "Subscribe"
+            }
+        }
+
+    }
+}
