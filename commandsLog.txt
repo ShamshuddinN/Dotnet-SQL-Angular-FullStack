@@ -22,21 +22,7 @@ dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.Tools 
 
 dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.Design --version 8.0.0
 
-//Adjust version as needed
-sudo dnf install dotnet-sdk-10.0
-
-dotnet tool install --global dotnet-ef
-
-//Try:
-dotnet ef --help
-
-//If error:
-echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.bashrc
-
-source ~/.bashrc
-
-//Try:
-dotnet ef --help
+i) Refer DAL/info before proceeding
 
 dotnet ef dbcontext scaffold "Server=localhost,1433;Database=ECommerceDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project ./EcomDAL/EcomDAL.csproj  -o Models
 
