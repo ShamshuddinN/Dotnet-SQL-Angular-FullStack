@@ -1,0 +1,15 @@
+Installing EF Core:
+>> sudo dnf install dotnet-sdk-10.0
+
+>> dotnet tool install --global dotnet-ef
+
+Try:
+>> dotnet ef --help
+
+If error:
+>> echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.bashrc
+
+>> source ~/.bashrc
+
+Try:
+>> dotnet ef --help
