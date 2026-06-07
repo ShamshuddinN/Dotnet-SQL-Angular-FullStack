@@ -18,6 +18,8 @@ dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.SqlSer
 
 dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.Tools --version 8.0.0
 
+dotnet add ./EcomDAL/EcomDAL.csproj package Microsoft.EntityFrameworkCore.Design --version 8.0.0
+
 dotnet ef dbcontext scaffold "Server=localhost,1433;Database=ECommerceDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project ./EcomDAL/EcomDAL.csproj  -o Models
 
 dotnet add ./EcomConsole/EcomConsole.csproj reference ./EcomDAL/EcomDAL.csproj
