@@ -49,7 +49,8 @@ Running Docker without sudo:
    >> docker cp ./ECommerceDB/Compiled_Script/Single_Compiled.sql sql_server_fts:/tmp/script.sql
    >> docker exec -it sql_server_fts /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "StrongPass@6473" -i /tmp/script.sql
 
-   Option B: Using a GUI Client (SSMS, Azure Data Studio, DBeaver)
+   Option B: Using a GUI Client (SSMS, Azure Data Studio, BeeKeeper Studio)
+   - Use (Recommended) https://github.com/beekeeper-studio/beekeeper-studio/releases
    - Connect using the credentials above.
    - Open 'ECommerceDB/Compiled_Script/Single_Compiled.sql'.
    - Execute the entire script.
