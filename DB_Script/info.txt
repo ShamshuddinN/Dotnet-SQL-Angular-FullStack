@@ -31,6 +31,9 @@ Running Docker without sudo:
 
 >> reboot
 
+Test without sudo:
+>> docker run hello-world
+
 1. Start the container:
    >> docker compose up -d
 
