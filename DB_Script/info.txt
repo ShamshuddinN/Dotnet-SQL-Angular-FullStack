@@ -25,6 +25,8 @@ Test:
 Running Docker without sudo:
 >> sudo groupadd docker
 
+//Ignore if docker already exists
+
 >> sudo usermod -aG docker $USER
 
 >> sudo systemctl restart docker
