@@ -1,0 +1,29 @@
+Download Node: https://nodejs.org/en/download
+
+Get Node.js for Linux using nvm with npm - Works
+
+>> npm install -g @angular/cli
+
+>> ng new EcomUI --style css --skip-git
+
+cd into Project Folder
+
+>> cd EcomUI/
+
+>> npm install tailwindcss @tailwindcss/postcss postcss --force
+
+>> touch .postcssrc.json
+
+>> echo '{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}' > .postcssrc.json
+
+>> echo '@import "tailwindcss";' > src/styles.css
+
+>> echo '<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>' > src/app/app.html
+
+>> ng serve
