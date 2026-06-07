@@ -1,5 +1,35 @@
 Setting up MSSQL Docker Container:
 ================================
+0. Ref: https://docs.docker.com/engine/install/fedora/
+>>
+sudo dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+>> sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+
+>> sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+>> sudo systemctl enable --now docker
+
+Test:
+>> sudo docker run hello-world
+
+Running Docker without sudo:
+>> sudo groupadd docker
+
+>> sudo usermod -aG docker $USER
+
+>> sudo systemctl restart docker
+
+>> reboot
 
 1. Start the container:
    >> docker compose up -d
