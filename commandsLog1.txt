@@ -1,0 +1,90 @@
+- dotnet new sln -n ShStore
+- dotnet new classlib -n ShStoreDAL
+- dotnet sln add ShStoreDAL/ShStoreDAL.csproj
+- rm ShStoreDAL/Class1.cs
+- dotnet add ./ShStoreDAL/ShStoreDAL.csproj package Microsoft.EntityFrameworkCore.SqlServer
+- dotnet add ./ShStoreDAL/ShStoreDAL.csproj package Microsoft.EntityFrameworkCore.Tools
+- dotnet add ./ShStoreDAL/ShStoreDAL.csproj package Microsoft.EntityFrameworkCore.Design
+- dotnet ef --help
+- dotnet ef dbcontext scaffold "Server=localhost,1433;Database=ShStoreDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project ./ShStoreDAL/ShStoreDAL.csproj  -o Models
+- touch ShStoreDAL/appsettings.json
+- echo '{
+  "ConnectionStrings": {
+    "ShStoreDB": "Server=localhost,1433;Database=ShStoreDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;"
+  }
+}' > ShStoreDAL/appsettings.json
+//Updated ShStoreDAL/Models/ShStoreDbContext.cs
+
+// Re-Ran ShStoreDBScripts/final-verified-script.sql
+- dotnet ef dbcontext scaffold "Server=localhost,1433;Database=ShStoreDB;User ID=SA;Password=StrongPass@6473;Encrypt=False;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project ./ShStoreDAL/ShStoreDAL.csproj -o Models --force
+//Updated ShStoreDAL/Models/ShStoreDbContext.cs again
+
+# Verified DAL implementation with externalized connection string and EF Core tools
+- dotnet build
+- dotnet ef dbcontext list --project ./ShStoreDAL/ShStoreDAL.csproj
+- rm -f /home/shams01/Desktop/ShApplication/InsertMigrationRecord.cs /home/shams01/Desktop/ShApplication/InsertMigrationRecord.csproj
+
+# Added configuration packages for externalized connection string support
+- dotnet add ./ShStoreDAL/ShStoreDAL.csproj package Microsoft.Extensions.Configuration --version 10.0.9
+- dotnet add ./ShStoreDAL/ShStoreDAL.csproj package Microsoft.Extensions.Configuration.Json --version 10.0.9
+
+- rm DAL_IMPLEMENTATION_PLAN.md
+# Phase 1: Task 1 - Add Required NuGet Packages for Authentication
+- dotnet new webapi -n ShStoreAPI
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj package Microsoft.AspNetCore.Authentication.JwtBearer --version 10.0.9
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj package Microsoft.IdentityModel.Tokens --version 8.19.1
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj package BCrypt.Net-Next --version 4.2.0
+
+//Created a general purpose console application
+- dotnet new console -n ShStoreConsole --use-program-main
+
+# Phase 1: Task 2 - Review DAL entities and check Roles table
+- dotnet add ./ShStoreConsole/ShStoreConsole.csproj package Microsoft.EntityFrameworkCore.SqlServer --version 10.0.9
+- dotnet add ./ShStoreConsole/ShStoreConsole.csproj reference ./ShStoreDAL/ShStoreDAL.csproj
+- dotnet build ./ShStoreConsole/ShStoreConsole.csproj
+- dotnet run --project ./ShStoreConsole/ShStoreConsole.csproj
+
+//Adding newly missing projects to solution
+- dotnet sln add ShStoreConsole/ShStoreConsole.csproj
+- dotnet sln add ShStoreAPI/ShStoreAPI.csproj
+
+//Adding missing project reference
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj reference ./ShStoreDAL/ShStoreDAL.csproj
+# Phase 2: Core Authentication Components
+- mkdir -p ./ShStoreAPI/Utilities
+-- Created ./ShStoreAPI/Utilities/PasswordHelper.cs (password hashing helper using BCrypt)
+- mkdir -p ./ShStoreAPI/Services
+-- Created ./ShStoreAPI/Services/TokenService.cs (JWT token service with interface)
+- mkdir -p ./ShStoreAPI/Repositories
+-- Created ./ShStoreAPI/Repositories/AuthRepository.cs (authentication repository with interface)
+-- Updated ./ShStoreAPI/appsettings.json (added JWT settings and connection string)
+-- Updated ./ShStoreAPI/Program.cs (added services, JWT authentication, and middleware)
+
+# Fixed build issues in authentication components
+-- Fixed Program.cs: Removed incorrect IPasswordHelper registration (PasswordHelper is static)
+-- Fixed AuthRepository.cs: Added using ShStoreAPI.Utilities directive
+- dotnet build ./ShStoreAPI/ShStoreAPI.csproj
+
+# Created test AuthController to verify authentication components
+- mkdir -p ./ShStoreAPI/Controllers
+-- Created ./ShStoreAPI/Controllers/AuthController.cs (test controller with register and login endpoints)
+- dotnet build ./ShStoreAPI/ShStoreAPI.csproj
+
+# Configured rate-limiting in ShStoreAPI/Program.cs
+# Configured Swagger
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj package Swashbuckle.AspNetCore
+- dotnet add ./ShStoreAPI/ShStoreAPI.csproj package Swashbuckle.AspNetCore.Annotations
+- dotnet clean && dotnet buildFixed ShStoreAPI Program.cs: added AddControllers(), corrected Swagger setup (AddEndpointsApiExplorer and AddSwaggerGen). Verified API runs and Swagger accessible.
+
+#Moved fix_summary to MarkdownLogs
+- mv fix_summary.md ./MarkdownLogs/
+
+#Manually verified in swagger, Both Register [/api/Auth/register] and Login [/api/Auth/login] are working
+- dotnet clean && dotnet build && dotnet run --project ./ShStoreAPI/ShStoreAPI.csproj
+
+//Installing Data API builder command-line interface [DAB CLI]
+- dotnet tool install --global Microsoft.DataApiBuilder
+- sudo -S dnf install dotnet-runtime-8.0 -y
+- sudo -S dnf install aspnetcore-runtime-8.0 -y
+- dab --version
+- dab start --config ./SQL_MCP_Server/dab-config.json
