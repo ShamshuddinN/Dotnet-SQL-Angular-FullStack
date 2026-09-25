@@ -1,0 +1,17 @@
+services:
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: fedora-mssql
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "StrongPass@6473"
+      MSSQL_PID: "Developer" # Options: Developer, Express, Standard, Enterprise
+    volumes:
+      - mssql_data:/var/opt/mssql
+    restart: no
+
+volumes:
+  mssql_data:
+    driver: local
